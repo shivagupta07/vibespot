@@ -1,0 +1,497 @@
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #fff;
+}
+
+/* Navbar fixed on top */
+.topbar .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #121212;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Navbar sections */
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Prev/Next buttons */
+.prev-next-buttons button {
+  background: #1db954;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Search Form */
+.search-form {
+  display: flex;
+  align-items: center;
+  background-color: #242424;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.search-form i {
+  margin-right: 8px;
+  color: #b3b3b3;
+}
+
+.search-form input[type="text"] {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 300px;
+  max-width: 80%;
+  font-size: 14px;
+}
+
+/* Upgrade and Install Buttons */
+.upgrade-btn,
+.install-btn {
+  background-color: transparent;
+  border: 1px solid #b3b3b3;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upgrade-btn:hover,
+.install-btn:hover {
+  background-color: #1db954;
+  border-color: #1db954;
+  color: black;
+}
+
+/* User Icon */
+.user-icon {
+  background-color: #282828;
+  border-radius: 50%;
+  padding: 8px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.user-icon i {
+  color: white;
+}
+
+/* Spotify-style Navbar - scoped */
+.spotify-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #000;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Left section: Logo and Home button */
+.spotify-navbar .left-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.spotify-navbar .logo {
+  width: 32px;
+  height: 32px;
+}
+
+.spotify-navbar .home-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Center section: Search bar */
+.spotify-navbar .search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #121212;
+  padding: 8px 12px;
+  border-radius: 999px;
+  margin: 0 20px;
+  max-width: 500px;
+}
+
+.spotify-navbar .search-bar input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  margin: 0 10px;
+  outline: none;
+}
+
+.spotify-navbar .search-icon,
+.spotify-navbar .mic-icon {
+  color: #b3b3b3;
+}
+
+/* Right section: Links and buttons */
+.spotify-navbar .right-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.spotify-navbar .right-section a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.spotify-navbar .divider {
+  height: 24px;
+  width: 1px;
+  background-color: #b3b3b3;
+}
+
+.spotify-navbar .login-btn {
+  background-color: white;
+  color: black;
+  border: none;
+   padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #1db954;
+  color: black;
+}
+
+
+/* Hover effects: grow slightly and turn white */
+.spotify-navbar .right-section a:hover,
+.spotify-navbar .login-btn:hover,
+.spotify-navbar .home-btn:hover,
+.spotify-navbar .search-icon:hover,
+.spotify-navbar .mic-icon:hover {
+  color: white;
+  transform: scale(1.05);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Also apply transform on buttons inside .spotify-navbar */
+.spotify-navbar button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Sidebar below navbar */
+.sidebar {
+  width: 400px;
+  background-color: #000;
+  padding: 20px;
+  height: calc(100vh - 60px);
+  position: fixed;
+  top: 60px;
+  left: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 900;
+}
+
+.navigation ul {
+  list-style: none;
+}
+
+.navigation li {
+  margin: 15px 0;
+}
+
+.navigation a {
+  color: #b3b3b3;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: #fff;
+}
+
+.navigation i {
+  margin-right: 10px;
+}
+
+.library {
+  margin-top: 20px;
+}
+
+.library h3 {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.playlist-box,
+.podcast-box {
+  background-color: #242424;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.subtitle {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #b3b3b3;
+}
+
+.btn {
+  padding: 8px 14px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  margin-top: 30px;
+}
+
+.footer-links {
+  list-style: none;
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+.footer-links li {
+  margin: 5px 0;
+}
+
+.footer-links a {
+  color: #b3b3b3;
+  text-decoration: none;
+}
+
+.lang-btn {
+  margin-top: 15px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #b3b3b3;
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+/* Main Container */
+.main-container {
+  margin-left: 400px;
+  margin-top: 60px;
+  padding: 20px;
+  flex: 1;
+}
+
+/* Trending Section */
+.Trending {
+  margin-top: 30px;
+}
+
+.Trending h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  background-color: #181818;
+  width: 180px;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+}
+
+.item:hover {
+  background-color: #282828;
+}
+
+.item img {
+  width: 108%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.item h4 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.item p {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+/* Play Icon */
+.play {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #1db954;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.item:hover .play {
+  opacity: 1;
+}
+
+/* Horizontal Scroll */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+.horizontal-scroll .item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+/* Trending Scroll */
+.trending-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.trending-list::-webkit-scrollbar {
+  height: 8px;
+}
+.trending-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+.trending-list .item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 180px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main-container {
+    margin-left: 0;
+    margin-top: 60px;
+    padding: 10px;
+  }
+
+  .search-form input[type="text"] {
+    width: 180px;
+  }
+
+  .list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .item {
+    width: 140px;
+  }
+
+  .search-form input[type="text"] {
+    width: 150px;
+  }
+
+  .upgrade-btn,
+  .install-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .user-icon {
+    padding: 6px;
+  }
+}
