@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Premium Podcasts - Spotify Theme</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #121212;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a, button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 1.5rem auto 3rem;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    user-select: none;
+  }
+  header h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+    color: #1db954;
+    text-shadow: 0 0 10px #1db954aa;
+  }
+  header p {
+    color: #b3b3b3;
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Categories */
+  #categories {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .category-card {
+    background: #282828;
+    border-radius: 12px;
+    padding: 1.2rem 1.8rem;
+    width: 140px;
+    text-align: center;
+    color: #b3b3b3;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    transition: all 0.3s ease;
+    user-select: none;
+    border: 1px solid transparent;
+  }
+  .category-card:hover,
+  .category-card:focus {
+    color: #1db954;
+    box-shadow: 0 0 15px #1db954cc;
+    border-color: #1db954;
+    transform: translateY(-4px);
+  }
+  .category-card img {
+    width: 50px;
+    margin-bottom: 0.7rem;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+  .category-card:hover img,
+  .category-card:focus img {
+    filter: brightness(1) saturate(4) drop-shadow(0 0 5px #1db954);
+  }
+  .category-card h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  /* Featured Podcast */
+  #featured-podcast {
+    display: flex;
+    background: #181818;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    margin-bottom: 3rem;
+    user-select: none;
+  }
+  #featured-podcast img {
+    width: 320px;
+    object-fit: cover;
+    filter: drop-shadow(0 0 12px #1db954aa);
+    transition: transform 0.4s ease;
+  }
+  #featured-podcast:hover img {
+    transform: scale(1.05);
+  }
+  #featured-podcast .info {
+    padding: 2rem 3rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #featured-podcast h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1db954;
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 15px #1db954aa;
+  }
+  #featured-podcast p {
+    font-weight: 400;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-bottom: 2.2rem;
+  }
+  #featured-podcast button {
+    width: max-content;
+    border: none;
+    background: #1db954;
+    color: black;
+    padding: 0.7rem 2.2rem;
+    border-radius: 35px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 8px 18px #17a44acc;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  #featured-podcast button:hover,
+  #featured-podcast button:focus {
+    background: #28e560;
+    box-shadow: 0 12px 28px #28e560cc;
+  }
+
+  /* Search & Sort Controls */
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .controls input[type="search"],
+  .controls select {
+    background: #282828;
+    border: none;
+    color: #b3b3b3;
+    padding: 0.55rem 1rem;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 1rem;
+    outline-offset: 2px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
+    min-width: 180px;
+    transition: box-shadow 0.3s ease;
+  }
+  .controls input[type="search"]::placeholder {
+    color: #666;
+  }
+  .controls input[type="search"]:focus,
+  .controls select:focus {
+    box-shadow: 0 0 10px #1db954cc;
+    color: #1db954;
+    background: #121212;
+  }
+
+  /* Episodes List */
+  #episodes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+  .episode-card {
+    background: #181818;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+  }
+  .episode-card:hover,
+  .episode-card:focus-within {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px #1db954bb;
+    border-color: #1db954;
+  }
+  .episode-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    filter: brightness(0.85);
+    transition: filter 0.3s ease;
+  }
+  .episode-card:hover img {
+    filter: brightness(1);
+  }
+  .episode-info {
+    padding: 1.5rem 1.8rem 1.8rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .episode-info h3 {
+    font-weight: 700;
+    color: #1db954;
+    margin: 0 0 0.4rem 0;
+    font-size: 1.2rem;
+  }
+  .episode-info p {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    flex-grow: 1;
+    margin-bottom: 0.9rem;
+    line-height: 1.3;
+    user-select: text;
+  }
+  .episode-info small {
+    font-size: 0.8rem;
+    color: #666;
+    user-select: none;
+  }
+
+  /* Play Button & Progress */
+  .play-btn {
+    background: #1db954;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: black;
+    align-self: flex-start;
+    margin-top: 0.7rem;
+    box-shadow: 0 6px 12px #17a44acc;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+  }
+  .play-btn:hover,
+  .play-btn:focus {
+    background: #28e560;
+    box-shadow: 0 10px 20px #28e560bb;
+    transform: scale(1.15);
+  }
+  .play-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+    color: #555;
+    user-select: none;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    #featured-podcast {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #featured-podcast img {
+      width: 100%;
+      max-height: 280px;
+      border-radius: 0 0 20px 20px;
+      filter: drop-shadow(0 0 8px #1db954aa);
+    }
+    #featured-podcast .info {
+      padding: 1.5rem 1rem 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Premium Podcasts</h1>
+  <p>Enjoy exclusive, ad-free episodes & expert hosts.</p>
+</header>
+
+<div class="container">
+
+  <!-- Categories -->
+  <div id="categories" aria-label="Podcast Categories">
+    <div tabindex="0" class="category-card" role="button" aria-pressed="false">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/microphone.png" alt="True Crime Icon" />
+      <h3>True Crime</h3>
+    </div>
+    <div tabindex="0" class="category-card" role="button" aria-pressed="false">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/comedy.png" alt="Comedy Icon" />
+      <h3>Comedy</h3>
+    </div>
+    <div tabindex="0" class="category-card" role="button" aria-pressed="false">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/sports.png" alt="Sports Icon" />
+      <h3>Sports</h3>
+    </div>
+    <div tabindex="0" class="category-card" role="button" aria-pressed="false">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/technology.png" alt="Technology Icon" />
+      <h3>Tech</h3>
+    </div>
+    <div tabindex="0" class="category-card" role="button" aria-pressed="false">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/music.png" alt="Music Icon" />
+      <h3>Music</h3>
+    </div>
+  </div>
+
+  <!-- Featured Podcast -->
+  <section id="featured-podcast" aria-label="Featured Podcast">
+    <img src="https://cdn.pixabay.com/photo/2017/06/10/07/48/microphone-2389812_1280.jpg" alt="Featured Podcast Cover" />
+    <div class="info">
+      <h2>The Mystery Files</h2>
+      <p>Dive deep into unsolved cases with host Jane Doe. New episodes every Wednesday.</p>
+      <button aria-label="Play The Mystery Files podcast">Listen Now</button>
+    </div>
+  </section>
+
+  <!-- Controls: Search and Sort -->
+  <div class="controls" role="search">
+    <input type="search" id="search-episodes" placeholder="Search podcasts..." aria-label="Search podcasts" />
+    <select id="sort-episodes" aria-label="Sort podcasts">
+      <option value="newest">Sort by Newest</option>
+      <option value="oldest">Sort by Oldest</option>
+      <option value="popular">Sort by Popularity</option>
+    </select>
+  </div>
+
+  <!-- Episodes List -->
+  <div id="episodes-list" aria-live="polite" aria-label="Podcast Episodes List">
+    <!-- Episodes will be populated by JavaScript -->
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Premium Podcasts. All rights reserved.
+</footer>
+
+<script>
+  // Sample podcast episodes data
+  const episodes = [
+    {
+      id: 1,
+      title: "Unraveling the Night",
+      description: "A chilling true crime story that will keep you on edge.",
+      date: "2025-05-20",
+      popularity: 95,
+      category: "True Crime",
+      img: "https://cdn.pixabay.com/photo/2018/03/20/18/01/podcast-3241514_1280.jpg"
+    },
+    {
+      id: 2,
+      title: "Laugh Out Loud",
+      description: "Your weekly dose of hilarious comedy and stand-up.",
+      date: "2025-05-18",
+      popularity: 80,
+      category: "Comedy",
+      img: "https://cdn.pixabay.com/photo/2017/08/30/00/18/laugh-2696063_1280.jpg"
+    },
+    {
+      id: 3,
+      title: "The Sports Zone",
+      description: "Latest updates and commentary on your favorite sports.",
+      date: "2025-05-22",
+      popularity: 75,
+      category: "Sports",
+      img: "https://cdn.pixabay.com/photo/2016/11/21/15/57/basketball-1846035_1280.jpg"
+    },
+    {
+      id: 4,
+      title: "Tech Talk Daily",
+      description: "Discussing innovations and tech trends worldwide.",
+      date: "2025-05-21",
+      popularity: 88,
+      category: "Tech",
+      img: "https://cdn.pixabay.com/photo/2016/11/29/03/53/technology-1868728_1280.jpg"
+    },
+    {
+      id: 5,
+      title: "Music Vibes",
+      description: "Dive into music stories and exclusive interviews.",
+      date: "2025-05-19",
+      popularity: 90,
+      category: "Music",
+      img: "https://cdn.pixabay.com/photo/2018/02/21/16/06/guitar-3168835_1280.jpg"
+    }
+  ];
+
+  const episodesList = document.getElementById('episodes-list');
+  const searchInput = document.getElementById('search-episodes');
+  const sortSelect = document.getElementById('sort-episodes');
+
+  function renderEpisodes(filteredEpisodes) {
+    episodesList.innerHTML = '';
+    if (filteredEpisodes.length === 0) {
+      episodesList.innerHTML = `<p style="color:#777; font-style: italic;">No podcasts found.</p>`;
+      return;
+    }
+    filteredEpisodes.forEach(ep => {
+      const card = document.createElement('article');
+      card.className = 'episode-card';
+      card.tabIndex = 0;
+      card.setAttribute('aria-label', `${ep.title} podcast episode`);
+
+      card.innerHTML = `
+        <img src="${ep.img}" alt="Podcast cover for ${ep.title}" />
+        <div class="episode-info">
+          <h3>${ep.title}</h3>
+          <p>${ep.description}</p>
+          <small>Released: ${new Date(ep.date).toLocaleDateString()}</small>
+          <button class="play-btn" aria-label="Play ${ep.title} podcast">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </button>
+        </div>
+      `;
+      episodesList.appendChild(card);
+    });
+  }
+
+  function filterAndSortEpisodes() {
+    let filtered = episodes.filter(ep => 
+      ep.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+      ep.description.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+      ep.category.toLowerCase().includes(searchInput.value.toLowerCase())
+    );
+
+    switch(sortSelect.value) {
+      case 'newest':
+        filtered.sort((a,b) => new Date(b.date) - new Date(a.date));
+        break;
+      case 'oldest':
+        filtered.sort((a,b) => new Date(a.date) - new Date(b.date));
+        break;
+      case 'popular':
+        filtered.sort((a,b) => b.popularity - a.popularity);
+        break;
+    }
+    renderEpisodes(filtered);
+  }
+
+  searchInput.addEventListener('input', filterAndSortEpisodes);
+  sortSelect.addEventListener('change', filterAndSortEpisodes);
+
+  // Initial render
+  filterAndSortEpisodes();
+</script>
+
+</body>
+</html>

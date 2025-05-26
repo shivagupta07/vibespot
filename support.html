@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe-Spot Support</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #121212;
+      color: white;
+    }
+
+    header {
+      background: #000;
+      padding: 15px 0;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      color: #1DB954;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+
+    .support-section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .support-section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #1DB954;
+    }
+
+    .support-form {
+      background: #181818;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #333;
+    }
+
+    .support-form label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+
+    .support-form input,
+    .support-form textarea,
+    .support-form select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      background: #222;
+      color: white;
+      font-size: 14px;
+    }
+
+    .support-form button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #1DB954;
+      color: black;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .support-form button:hover {
+      background: #1ed760;
+    }
+
+    .confirmation {
+      margin-top: 20px;
+      padding: 10px;
+      background: #222;
+      border-left: 4px solid #1DB954;
+      display: none;
+      border-radius: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <h1 class="logo"><i class="fab fa-Vibe-Spot"></i> Vibe-Spot</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="premium.html">Premium</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="support-section">
+    <h2>Need Help? Contact Vibe-Spot Support</h2>
+    <form class="support-form" id="supportForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="issue">Issue Category</label>
+      <select id="issue">
+        <option value="">Select a category</option>
+        <option value="login">Login Problem</option>
+        <option value="payment">Payment Issue</option>
+        <option value="subscription">Subscription Help</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="message">Describe Your Issue</label>
+      <textarea id="message" rows="5" required></textarea>
+
+      <button type="submit">Submit</button>
+
+      <div class="confirmation" id="confirmationMessage">
+        Thank you for reaching out! Our support team will contact you shortly.
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Vibe-Spot Clone | Designed by Shiva</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('supportForm');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      confirmation.style.display = 'block';
+      form.reset();
+    });
+  </script>
+</body>
+</html>

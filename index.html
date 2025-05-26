@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+  window.onload = function() {
+    const email = localStorage.getItem('email');
+    if (email) {
+      const name = getNameFromEmail(email);
+      alert(`Login successful, ${name}`);
+      localStorage.removeItem('email');
+    }
+  };
+
+  function getNameFromEmail(email) {
+    const username = email.split('@')[0];
+    const match = username.match(/^([a-zA-Z]+)(\d+)/);
+    if (match) {
+      return match[1];
+    }
+    return username;
+  }
+</script>
+
 </head>
 <body>
   <div class="sidebar">
@@ -29,7 +49,7 @@
       <div class="podcast-box">
         <p class="title">Let's find some podcasts to follow</p>
         <p class="subtitle">We'll keep you updated on new episodes</p>
-        <button class="btn">Browse podcasts</button>
+       <a href="podcast.html" > <button class="btn">Browse podcasts</button> 
       </div>
     </div>
 
@@ -48,110 +68,371 @@
 
   <div class="main-container">
     
-<div class="spotify-navbar">
-  <div class="left-section">
-    <img src="spotify-logo.png" alt="Spotify" class="logo" />
-    <button class="home-btn"><i class="fas fa-home"></i></button>
-  </div>
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    /* Basic styles for demo */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .spotify-navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #000000;
+      color: white;
+    }
+    .left-section,
+    .right-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .logo {
+      height: 30px;
+    }
+    .home-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .search-bar {
+      flex-grow: 1;
+      max-width: 400px;
+      margin: 0 20px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 8px 35px 8px 30px;
+      border-radius: 15px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+    }
+    .mic-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+    }
+    .right-section a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+    .divider {
+      width: 1px;
+      height: 20px;
+      background: white;
+      margin: 0 10px;
+    }
+
+    /* Song list */
+    .song-list {
+      padding: 20px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .song-item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="spotify-navbar">
+    <div class="left-section">
+      <img src="spotify.png" alt="Spotify" class="logo" />
+      <button class="home-btn"><i class="fas fa-home"></i></button>
+    </div>
 
   <div class="search-bar">
-    <i class="fas fa-search search-icon"></i>
-    <input type="text" placeholder="What do you want to play?" />
-    <i class="fas fa-list mic-icon"></i>
-  </div>
-
-  <div class="right-section">
-    <a href="#">Premium</a>
-    <a href="#">Support</a>
-    <a href="#">Download</a>
-    <div class="divider"></div>
-    <a href="#">Install App</a>
-    <a href="#">Sign up</a>
-    <button class="login-btn">Log in</button>
-  </div>
+  <i class="fas fa-search search-icon"></i>
+  <input type="text" id="searchInput" placeholder="What do you want to play?" />
+  <i class="fas fa-list mic-icon"></i>
 </div>
 
-   <div class="Trending">
+    <div class="right-section">
+      <a href="premium.html">Premium</a>
+      <a href="support.html">Support</a>
+      <a href="download.html">Download</a>
+      <div class="divider"></div>
+      <a href="install.html">Install App</a>
+      <a href="signup.html">Sign up</a>
+      <a href="login.html" class="login-btn d-block text-center">login</a>
+    </div>
+  </div>
+<div class="Trending">
   <h2>Trending</h2>
   <div class="trending-list">
-    <div class="item">
+
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" class="item" target="_blank">
       <img src="./images/Today's Top Hits.jpg" alt="Today's Top Hits" />
       <div class="play"><span class="fa fa-play"></span></div>
       <h4>Today's Top Hits</h4>
       <p>Olivia Rodrigo is on top of the Hottest 50!</p>
-    </div>
-    <div class="item">
+    </a>
+
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd" class="item" target="_blank">
       <img src="./images/RapCaviar.jpg" alt="RapCaviar" />
       <div class="play"><span class="fa fa-play"></span></div>
       <h4>RapCaviar</h4>
       <p>New music from Cardi B, Megan Thee Stallion and more.</p>
-    </div>
-    <div class="item">
+    </a>
+
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DWYcDQ1hSjOpY" class="item" target="_blank">
       <img src="./images/All Out 2010s.jpg" alt="All Out 2010s" />
       <div class="play"><span class="fa fa-play"></span></div>
       <h4>All Out 2010s</h4>
       <p>The biggest songs of the 2010s.</p>
-    </div>
-    <div class="item">
+    </a>
+
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U" class="item" target="_blank">
       <img src="./images/Rock Classics.jpg" alt="Rock Classics" />
       <div class="play"><span class="fa fa-play"></span></div>
       <h4>Rock Classics</h4>
       <p>Rock legends & epic songs that continue to inspire.</p>
-    </div>
-    <div class="item">
+    </a>
+
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX4WYpdgoIcn6" class="item" target="_blank">
       <img src="./images/Chill Hits.jpg" alt="Chill Hits" />
       <div class="play"><span class="fa fa-play"></span></div>
       <h4>Chill Hits</h4>
       <p>Kick back to the best new and recent chill hits.</p>
-    </div>
-    <div class="item">
+    </a>
+
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX10zKzsJ2jva" class="item" target="_blank">
       <img src="./images/Viva Latino.jpg" alt="Viva Latino" />
       <div class="play"><span class="fa fa-play"></span></div>
       <h4>Viva Latino</h4>
       <p>Today's top Latin hits elevando nuestra música.</p>
-    </div>
-    <div class="item">
+    </a>
+
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX4UtSsGT1Sbe" class="item" target="_blank">
       <img src="./images/All Out 80s.jpg" alt="All Out 80s" />
       <div class="play"><span class="fa fa-play"></span></div>
       <h4>All Out 80s</h4>
       <p>The biggest songs of the 1980s. Cover: Michael Jackson.</p>
-    </div>
+    </a>
+
   </div>
 </div>
 
 
-    <div class="Trending">
-      <h2>Popular Albums & Singles</h2>
-      <div class="horizontal-scroll">
-        <div class="list">
-          <div class="item"><img src="arijit.jpg" alt="Arijit Singh" /><div class="play"><span class="fa fa-play"></span></div><h4>Arijit Singh</h4><p>Top romantic hits and soulful melodies.</p></div>
-          <div class="item"><img src="taylor.jpg" alt="Taylor Swift" /><div class="play"><span class="fa fa-play"></span></div><h4>Taylor Swift</h4><p>Chart-toppers and iconic storytelling songs.</p></div>
-          <div class="item"><img src="weeknd.jpg" alt="The Weeknd" /><div class="play"><span class="fa fa-play"></span></div><h4>The Weeknd</h4><p>Dark, moody pop and R&B vibes.</p></div>
-          <div class="item"><img src="bts.jpg" alt="BTS" /><div class="play"><span class="fa fa-play"></span></div><h4>BTS</h4><p>Global K-pop sensations with energetic hits.</p></div>
-          <div class="item"><img src="billie.jpg" alt="Billie Eilish" /><div class="play"><span class="fa fa-play"></span></div><h4>Billie Eilish</h4><p>Alternative pop with haunting vibes.</p></div>
-        <div class="item"><img src="bts.jpg" alt="BTS" /><div class="play"><span class="fa fa-play"></span></div><h4>BTS</h4><p>Global K-pop sensations with energetic hits.</p></div>
-        </div>
-      </div>
 
+      <h2>Popular Artists</h2>
+<div class="horizontal-scroll">
+  <div class="list">
+
+    <a href="https://open.spotify.com/artist/4YRxDV8wJFPHPTeXepOstw" class="album-item" target="_blank">
+      <img src="arijit.jpg" alt="Arijit Singh">
+      <h4>Arijit Singh</h4>
+      <p>Top romantic hits and soulful melodies.</p>
+    </a>
+
+    <a href="https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02" class="album-item" target="_blank">
+      <img src="taylor.jpg" alt="Taylor Swift">
+      <h4>Taylor Swift</h4>
+      <p>Chart-toppers and iconic storytelling songs.</p>
+    </a>
+
+    <a href="https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ" class="album-item" target="_blank">
+      <img src="weeknd.jpg" alt="The Weeknd">
+      <h4>The Weeknd</h4>
+      <p>Dark, moody pop and R&B vibes.</p>
+    </a>
+
+    <a href="https://open.spotify.com/artist/3Nrfpe0tUJi4K4DXYWgMUX" class="album-item" target="_blank">
+      <img src="bts.jpg" alt="BTS">
+      <h4>BTS</h4>
+      <p>Global K-pop sensations with energetic hits.</p>
+    </a>
+
+    <a href="https://open.spotify.com/artist/6qqNVTkY8uBg9cP3Jd7DAH" class="album-item" target="_blank">
+      <img src="billie.jpg" alt="Billie Eilish">
+      <h4>Billie Eilish</h4>
+      <p>Alternative pop with haunting vibes.</p>
+    </a>
+
+  </div>
+</div>
+
+
+ <div class="Trending">
       <h2>Popular Songs</h2>
       <div class="horizontal-scroll">
-        <div class="item"><img src="aur.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Aur</h4><p>Aur - Tu Hai Kahan</p></div>
-        <div class="item"><img src="excuses.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Excuses</h4><p>AP Dhillon, Gurinder Gill</p></div>
-        <div class="item"><img src="arijit.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Kesariya</h4><p>Arijit Singh</p></div>
-        <div class="item"><img src="pasoori.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Pasoori</h4><p>Ali Sethi, Shae Gill</p></div>
-        <div class="item"><img src="pathaan.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Jhoome Jo Pathaan</h4><p>Arijit Singh</p></div>
-        <div class="item"><img src="maan.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Maan Meri Jaan</h4><p>King</p></div>
-        <div class="item"><img src="brown.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Brown Munde</h4><p>AP Dhillon</p></div>
+        <div class="item">
+  <img src="aur.jpg" />
+  <div class="play" id="playAurButton">
+    <span class="fa fa-play"></span>
+  </div>
+  <h4>Aur</h4>
+  <p>Aur - Tu Hai Kahan</p>
+  <audio id="aurAudio" src="aur.mp3"></audio>
+</div>
+
+<script>
+  const playAurButton = document.getElementById("playAurButton");
+  const aurAudio = document.getElementById("aurAudio");
+
+  playAurButton.addEventListener("click", () => {
+    aurAudio.play();
+  });
+</script>
+
+       <div class="item">
+  <img src="songs/excuses.jpg" />
+  <div class="play" id="playExcusesButton">
+    <span class="fa fa-play"></span>
+  </div>
+  <h4>Excuses</h4>
+  <p>AP Dhillon, Gurinder Gill</p>
+  <audio id="excusesAudio" src="songs/ex.mp3"></audio>
+</div>
+
+<script>
+  const playExcusesButton = document.getElementById("playExcusesButton");
+  const excusesAudio = document.getElementById("excusesAudio");
+
+  playExcusesButton.addEventListener("click", () => {
+    excusesAudio.play();
+  });
+</script>
+
+        <div class="item"><img src="kesariya.jpg" /><div class="play"><span class="fa fa-play"></span></div><h4>Kesariya</h4><p>Arijit Singh</p></div>
+        <div class="item">
+  <img src="pasoori.jpg" />
+  <div class="play" id="playButton">
+    <span class="fa fa-play"></span>
+  </div>
+  <h4>Pasoori</h4>
+  <p>Ali Sethi, Shae Gill</p>
+  <audio id="pasooriAudio" src="pasoori.mp3"></audio>
+</div>
+
+<script>
+  const playButton = document.getElementById("playButton");
+  const audio = document.getElementById("pasooriAudio");
+
+  playButton.addEventListener("click", () => {
+    audio.play();
+  });
+</script>
+
+       <div class="item">
+  <img src="pathaan.jpg" />
+  <div class="play" id="playPathaanButton">
+    <span class="fa fa-play"></span>
+  </div>
+  <h4>Jhoome Jo Pathaan</h4>
+  <p>Arijit Singh</p>
+  <audio id="pathaanAudio" src="pathaan.mp3"></audio>
+</div>
+
+<script>
+  const playPathaanButton = document.getElementById("playPathaanButton");
+  const pathaanAudio = document.getElementById("pathaanAudio");
+
+  playPathaanButton.addEventListener("click", () => {
+    pathaanAudio.play();
+  });
+</script>
+
+       <div class="item">
+  <img src="maan.jpg" />
+  <div class="play" id="playMaanButton">
+    <span class="fa fa-play"></span>
+  </div>
+  <h4>Maan Meri Jaan</h4>
+  <p>King</p>
+  <audio id="maanAudio" src="maan.mp3"></audio>
+</div>
+
+<script>
+  const playMaanButton = document.getElementById("playMaanButton");
+  const maanAudio = document.getElementById("maanAudio");
+
+  playMaanButton.addEventListener("click", () => {
+    maanAudio.play();
+  });
+</script>
+<div class="item">
+  <img src="brown.jpg" />
+  <div class="play" id="playBrownButton">
+    <span class="fa fa-play"></span>
+  </div>
+  <h4>Brown Munde</h4>
+  <p>AP Dhillon</p>
+  <audio id="brownAudio" src="brown.mp3"></audio>
+</div>
+
+<script>
+  const playBrownButton = document.getElementById("playBrownButton");
+  const brownAudio = document.getElementById("brownAudio");
+
+  playBrownButton.addEventListener("click", () => {
+    brownAudio.play();
+  });
+</script>
+
+      
       </div>
     </div>
-    <!-- Popular Radios Section -->
+<!-- Popular Radios Section -->
 <div class="Trending">
   <h2>Popular Radios</h2>
   <div class="horizontal-scroll">
-    <div class="item"><img src="./images/radio1.jpg" alt="90s Bollywood" /><div class="play"><span class="fa fa-play"></span></div><h4>90s Bollywood</h4><p>Relive golden hits from the 90s.</p></div>
-    <div class="item"><img src="./images/radio2.jpg" alt="Love Radio" /><div class="play"><span class="fa fa-play"></span></div><h4>Love Radio</h4><p>All-time favorite romantic tracks.</p></div>
-    <div class="item"><img src="./images/radio3.jpg" alt="Workout Boost" /><div class="play"><span class="fa fa-play"></span></div><h4>Workout Boost</h4><p>Pumped-up music to energize your gym time.</p></div>
-    <div class="item"><img src="./images/radio4.jpg" alt="Drive Time" /><div class="play"><span class="fa fa-play"></span></div><h4>Drive Time</h4><p>Perfect music for your road trips.</p></div>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DXd8cOUiye1o2" target="_blank">
+      <div class="item">
+        <img src="old.jpg.jpg" alt="90s Bollywood" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>90s Bollywood</h4>
+        <p>Relive golden hits from the 90s.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DWYxwmBaMqxsl" target="_blank">
+      <div class="item">
+        <img src="love.jpg.jpg" alt="Love Radio" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Love Radio</h4>
+        <p>All-time favorite romantic tracks.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX70RN3TfWWJh" target="_blank">
+      <div class="item">
+        <img src="work.jpg.jpg" alt="Workout Boost" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Workout Boost</h4>
+        <p>Pumped-up music to energize your gym time.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX5Ejj0EkURtP" target="_blank">
+      <div class="item">
+        <img src="drive.jpg" alt="Drive Time" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Drive Time</h4>
+        <p>Perfect music for your road trips.</p>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -159,9 +440,30 @@
 <div class="Trending">
   <h2>Featured Chart</h2>
   <div class="horizontal-scroll">
-    <div class="item"><img src="./images/hot50.jpg" alt="Hot 50 Global" /><div class="play"><span class="fa fa-play"></span></div><h4>Hot 50 Global</h4><p>Top trending tracks globally.</p></div>
-    <div class="item"><img src="./images/hot-india.jpg" alt="Hot India 50" /><div class="play"><span class="fa fa-play"></span></div><h4>Hot 50 India</h4><p>India's trending music right now.</p></div>
-    <div class="item"><img src="./images/daily-mix.jpg" alt="Daily Mix" /><div class="play"><span class="fa fa-play"></span></div><h4>Daily Mix</h4><p>Your personalized mix of favorites.</p></div>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DXcZDD7cfEKhW" target="_blank">
+      <div class="item">
+        <img src="top.jpg.jpg" alt="Hot 50 Global" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Hot 50 Global</h4>
+        <p>Top trending tracks globally.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX5q67ZpWyRrZ" target="_blank">
+      <div class="item">
+        <img src="top india.jpg.jpg" alt="Hot India 50" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Hot 50 India</h4>
+        <p>India's trending music right now.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1E36Ygh2fIPZ8V" target="_blank">
+      <div class="item">
+        <img src="daily.jpg.jpg" alt="Daily Mix" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Daily Mix</h4>
+        <p>Your personalized mix of favorites.</p>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -169,12 +471,41 @@
 <div class="Trending">
   <h2>India’s Best</h2>
   <div class="horizontal-scroll">
-    <div class="item"><img src="./images/bollywood.jpg" alt="Bollywood Hits" /><div class="play"><span class="fa fa-play"></span></div><h4>Bollywood Hits</h4><p>The best of Bollywood, all in one place.</p></div>
-    <div class="item"><img src="./images/indie.jpg" alt="Indian Indie" /><div class="play"><span class="fa fa-play"></span></div><h4>Indian Indie</h4><p>Fresh sounds from the Indian independent scene.</p></div>
-    <div class="item"><img src="./images/punjabi.jpg" alt="Punjabi Beats" /><div class="play"><span class="fa fa-play"></span></div><h4>Punjabi Beats</h4><p>Groove to the latest Punjabi chartbusters.</p></div>
-    <div class="item"><img src="./images/hindi-classics.jpg" alt="Hindi Classics" /><div class="play"><span class="fa fa-play"></span></div><h4>Hindi Classics</h4><p>Timeless melodies from Hindi cinema.</p></div>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DXaY1uF7bath2x" target="_blank">
+      <div class="item">
+        <img src="bollywood.jpg.jpg" alt="Bollywood Hits" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Bollywood Hits</h4>
+        <p>The best of Bollywood, all in one place.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX7dzM0K0Yrvu" target="_blank">
+      <div class="item">
+        <img src="indie.jpg.jpg" alt="Indian Indie" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Indian Indie</h4>
+        <p>Fresh sounds from the Indian independent scene.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX4dyzvuaRJ0n" target="_blank">
+      <div class="item">
+        <img src="punjabi.jpg.jpg" alt="Punjabi Beats" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Punjabi Beats</h4>
+        <p>Groove to the latest Punjabi chartbusters.</p>
+      </div>
+    </a>
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DWZOUzsEPlsGJ" target="_blank">
+      <div class="item">
+        <img src="punjabi.jpg.jpg" alt="Hindi Classics" />
+        <div class="play"><span class="fa fa-play"></span></div>
+        <h4>Hindi Classics</h4>
+        <p>Timeless melodies from Hindi cinema.</p>
+      </div>
+    </a>
   </div>
 </div>
+
 
   </div>
 </body>
@@ -188,9 +519,9 @@
     <div style="flex: 1; min-width: 180px; margin-bottom: 20px;">
       <h4>Company</h4>
       <ul style="list-style: none; padding: 0;">
-        <li><a href="#" style="color: white; text-decoration: none;">About</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Jobs</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">For the Record</a></li>
+        <li><a href="https://www.spotify.com/about-us/contact/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">About</a></li>
+        <li><a href="https://www.spotifyjobs.com/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Jobs</a></li>
+        <li><a href="https://newsroom.spotify.com/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">For the Record</a></li>
       </ul>
     </div>
 
@@ -198,11 +529,11 @@
     <div style="flex: 1; min-width: 180px; margin-bottom: 20px;">
       <h4>Communities</h4>
       <ul style="list-style: none; padding: 0;">
-        <li><a href="#" style="color: white; text-decoration: none;">For Artists</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Developers</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Advertising</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Investors</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Vendors</a></li>
+        <li><a href="https://artists.spotify.com/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">For Artists</a></li>
+        <li><a href="https://developer.spotify.com/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Developers</a></li>
+        <li><a href="https://www.spotify.com/us/advertising/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Advertising</a></li>
+        <li><a href="https://investors.spotify.com/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Investors</a></li>
+        <li><a href="https://www.spotify.com/us/partners/" style="color: white; text-decoration: none;">Vendors</a></li>
       </ul>
     </div>
 
@@ -210,9 +541,9 @@
     <div style="flex: 1; min-width: 180px; margin-bottom: 20px;">
       <h4>Useful Links</h4>
       <ul style="list-style: none; padding: 0;">
-        <li><a href="#" style="color: white; text-decoration: none;">Support</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Free Mobile App</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Spotify Plans</a></li>
+        <li><a href="https://support.spotify.com/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Support</a></li>
+        <li><a href="https://www.spotify.com/download/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Free Mobile App</a></li>
+        <li><a href="https://www.spotify.com/premium/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Spotify Plans</a></li>
       </ul>
     </div>
 
@@ -220,11 +551,11 @@
     <div style="flex: 1; min-width: 180px; margin-bottom: 20px;">
       <h4>Spotify Plans</h4>
       <ul style="list-style: none; padding: 0;">
-        <li><a href="#" style="color: white; text-decoration: none;">Premium Individual</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Premium Duo</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Premium Family</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Premium Student</a></li>
-        <li><a href="#" style="color: white; text-decoration: none;">Spotify Free</a></li>
+        <li><a href="https://www.spotify.com/premium/individual/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Premium Individual</a></li>
+        <li><a href="https://www.spotify.com/premium/duo/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Premium Duo</a></li>
+        <li><a href="https://www.spotify.com/premium/family/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Premium Family</a></li>
+        <li><a href="https://www.spotify.com/premium/student/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Premium Student</a></li>
+        <li><a href="https://www.spotify.com/free/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Spotify Free</a></li>
       </ul>
     </div>
 

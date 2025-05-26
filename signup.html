@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Your existing styles here */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #1db954, #191414);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: #121212;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+    }
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: #333;
+      color: #fff;
+    }
+    input:focus {
+      border: 2px solid #1db954;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1db954;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #17a34a;
+    }
+    .social-btns button {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #222;
+      color: #fff;
+    }
+    .progress {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .checkboxes label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .back-btn {
+      margin-top: 10px;
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+    .separator {
+      text-align: center;
+      margin: 15px 0;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="progress">Step <span id="stepNum">1</span> of 4</div>
+    <div class="step active" id="step1">
+      <h2>Sign up with Email</h2>
+      <input type="email" id="email" placeholder="Email address" required style="background: #1c1c1c; font-weight: bold; border: 2px solid #1db954;" />
+      <button onclick="nextStep(1)">Next</button>
+      <div class="separator">or continue with</div>
+      <div class="social-btns">
+        <button>Continue with Google</button>
+        <button>Continue with Facebook</button>
+        <button>Continue with Apple</button>
+      </div>
+    </div>
+
+    <div class="step" id="step2">
+      <h2>Create Password</h2>
+      <input type="password" id="password" placeholder="Create a password" required />
+      <button onclick="nextStep(2)">Next</button>
+      <button class="back-btn" onclick="prevStep(2)">Back</button>
+    </div>
+
+    <div class="step" id="step3">
+      <h2>Tell us about you</h2>
+      <input type="text" id="name" placeholder="Your name" required />
+      <input type="date" id="dob" placeholder="Date of Birth" required />
+      <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <button onclick="nextStep(3)">Next</button>
+      <button class="back-btn" onclick="prevStep(3)">Back</button>
+    </div>
+
+    <div class="step" id="step4">
+      <h2>Privacy Settings</h2>
+      <div class="checkboxes">
+        <label><input type="checkbox" /> I would prefer not to receive marketing messages from Vibe-Spot.</label>
+        <label><input type="checkbox" /> Share my registration data with Vibe-Spot content providers for marketing purposes.</label>
+      </div>
+      <button onclick="submitForm()">Finish</button>
+      <button class="back-btn" onclick="prevStep(4)">Back</button>
+    </div>
+  </div>
+<script>
+  let currentStep = 1;
+
+  function nextStep(step) {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password')?.value;
+
+    if (step === 1 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Please enter a valid email.");
+      return;
+    }
+    if (step === 2 && (!password || password.length < 6)) {
+      alert("Password must be at least 6 characters.");
+      return;
+    }
+
+    document.getElementById(`step${step}`).classList.remove('active');
+    document.getElementById(`step${step + 1}`).classList.add('active');
+    currentStep = step + 1;
+    document.getElementById('stepNum').innerText = currentStep;
+  }
+
+  function prevStep(step) {
+    document.getElementById(`step${step}`).classList.remove('active');
+    document.getElementById(`step${step - 1}`).classList.add('active');
+    currentStep = step - 1;
+    document.getElementById('stepNum').innerText = currentStep;
+  }
+
+  function submitForm() {
+    const name = document.getElementById('name').value.trim();
+    const dob = document.getElementById('dob').value;
+    const email = document.getElementById('email').value.trim();
+
+    if (!name || !dob) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    // Store data in sessionStorage to pass it to the index.html page
+    sessionStorage.setItem("signupUser", name || email);
+
+    // Redirect to index.html
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>

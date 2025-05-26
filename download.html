@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Download</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+    header {
+      background: #000;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      color: #1DB954;
+      font-size: 2rem;
+    }
+    .download-section {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .download-section h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+    .download-section p {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+    .device-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .device {
+      background: #181818;
+      padding: 30px;
+      border-radius: 12px;
+      width: 260px;
+      transition: transform 0.3s ease;
+    }
+    .device:hover {
+      transform: scale(1.05);
+    }
+    .device i {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #1DB954;
+    }
+    .device h3 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .device p {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+    .device button {
+      padding: 10px 20px;
+      background: #1DB954;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .device button:hover {
+      background: #1ed760;
+    }
+    .footer {
+      background: #000;
+      color: #888;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><i class="fab fa-spotify"></i> Spotify</h1>
+  </header>
+
+  <section class="download-section">
+    <h2>Download Spotify</h2>
+    <p>Enjoy music on your favorite devices. Choose your platform below:</p>
+
+    <div class="device-options">
+      <div class="device">
+        <i class="fas fa-desktop"></i>
+        <h3>Windows</h3>
+        <p>Download the Spotify desktop app for Windows.</p>
+        <button onclick="download('Windows')">Download</button>
+      </div>
+      <div class="device">
+        <i class="fas fa-laptop"></i>
+        <h3>Mac</h3>
+        <p>Download the Spotify desktop app for macOS.</p>
+        <button onclick="download('Mac')">Download</button>
+      </div>
+      <div class="device">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Android</h3>
+        <p>Get Spotify from the Google Play Store.</p>
+        <button onclick="download('Android')">Download</button>
+      </div>
+      <div class="device">
+        <i class="fas fa-apple"></i>
+        <h3>iOS</h3>
+        <p>Get Spotify from the Apple App Store.</p>
+        <button onclick="download('iOS')">Download</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Spotify Clone | Designed by Shiva</p>
+  </footer>
+
+  <script>
+    function download(platform) {
+      alert(`Redirecting to ${platform} download page...`);
+      // Here you can implement real redirects if needed
+      // Example:
+      // if(platform === 'Windows') window.location.href = 'https://download.spotify.com/windows';
+    }
+  </script>
+
+</body>
+</html>
