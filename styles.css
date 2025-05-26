@@ -10,6 +10,52 @@ body {
   background-color: #121212;
   color: #fff;
 }
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  padding: 20px;
+}
+
+.item {
+  width: 200px;
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.item img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.play {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #1db954;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.progress-container {
+  width: 100%;
+  height: 5px;
+  background: #444;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #1db954;
+  width: 0%;
+}
 
 /* Navbar fixed on top */
 .topbar .navbar {
@@ -203,6 +249,36 @@ body {
   color: black;
 }
 
+.btn {
+  background-color: white;
+  color: #333;
+  border: 2px solid #ccc;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+.btn:hover {
+  background-color: #f9f9f9;
+  border-color: #999;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
 
 /* Hover effects: grow slightly and turn white */
 .spotify-navbar .right-section a:hover,
@@ -376,9 +452,90 @@ body {
   margin-bottom: 5px;
 }
 
+.horizontal-scroll .list img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px;
+}
+.horizontal-scroll .list {
+  background-color: transparent; /* optional */
+  text-align: center;
+}
+
 .item p {
   font-size: 12px;
   color: #b3b3b3;
+}
+.card-container {
+  display: flex;
+  gap: 20px; /* space between cards */
+  flex-wrap: wrap; /* optional, allows wrapping on smaller screens */
+}
+
+.horizontal-scroll {
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.horizontal-scroll .list {
+  display: flex;
+  gap: 30px;
+  scroll-behavior: smooth;
+}
+
+.album-item {
+  text-align: center;
+  color: white;
+  width: 180px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+   text-decoration: none;  /* Remove underline */
+  color: inherit;         /* Use the text color of the container */
+  display: inline-block;  /* Keep block-like layout for the whole area */
+}
+
+.album-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.album-item:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.album-item h4 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.album-item p {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+/* Optional: Hide scrollbar on Webkit browsers */
+.horizontal-scroll .list::-webkit-scrollbar {
+  display: none;
+}
+.item {
+  text-decoration: none; /* Remove underline */
+  color: inherit;        /* Keep text color consistent */
+  display: block;        /* Make whole card clickable */
+  position: relative;    /* For internal play icon positioning */
+}
+
+.item:hover {
+  opacity: 0.85;         /* Slight hover effect */
+  cursor: pointer;
 }
 
 /* Play Icon */

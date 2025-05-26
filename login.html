@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vibespot Login</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #1db954, #121212);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      max-width: 420px;
+      width: 100%;
+      padding: 20px;
+    }
+    .login-card {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    }
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .social-login button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .google { background: #fff; color: #333; }
+    .facebook { background: #3b5998; color: #fff; }
+    .apple { background: #000; color: #fff; }
+    .mobile { background: #4caf50; color: #fff; }
+    .social-login button:hover {
+      transform: scale(1.02);
+    }
+    .divider {
+      text-align: center;
+      margin: 20px 0;
+      position: relative;
+    }
+    .divider span {
+      background: #1db954;
+      padding: 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .divider::before {
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      background: #555;
+      top: 50%;
+      left: 0;
+      z-index: 0;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+    }
+    .input-group label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: #aaa;
+      transition: 0.2s;
+      pointer-events: none;
+    }
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 10px;
+      font-size: 12px;
+      background: #1db954;
+      padding: 0 6px;
+      border-radius: 6px;
+      color: #000;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: #1db954;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .login-btn:hover {
+      background: #1ed760;
+    }
+    .links {
+      margin-top: 16px;
+      text-align: center;
+    }
+    .links a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-top: 8px;
+      transition: color 0.2s;
+    }
+    .links a:hover {
+      color: #fff;
+    }
+
+    /* MODAL STYLING */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      background-color: #121212;
+      margin: 10% auto;
+      padding: 25px 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      color: #fff;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .modal-content h2 {
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #222;
+      color: #fff;
+      font-size: 15px;
+    }
+    .modal-content button {
+      width: 100%;
+      padding: 12px;
+      background: #1db954;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 480px) {
+      .modal-content {
+        padding: 20px 15px;
+        font-size: 15px;
+      }
+      .modal-content h2 {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+      .modal-content input {
+        font-size: 14px;
+        padding: 10px;
+      }
+      .modal-content button {
+        font-size: 15px;
+        padding: 10px;
+      }
+      .close-btn {
+        font-size: 20px;
+        top: 8px;
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .modal-content {
+        padding: 15px 10px;
+        font-size: 14px;
+      }
+      .modal-content h2 {
+        font-size: 18px;
+      }
+      .modal-content input,
+      .modal-content button {
+        font-size: 13px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="loginForm" class="login-card">
+      <h2>Login to Vibespot</h2>
+      <div class="social-login">
+        <button class="google"><i class="fab fa-google"></i> Continue with Google</button>
+        <button class="facebook"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
+        <button class="apple"><i class="fab fa-apple"></i> Continue with Apple</button>
+        <button class="mobile"><i class="fas fa-mobile-alt"></i> Continue with Mobile Number</button>
+      </div>
+
+      <div class="divider"><span>or</span></div>
+
+      <div class="input-group">
+        <input type="text" id="username" required placeholder=" " />
+        <label for="username">Email address</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" required placeholder=" " />
+        <label for="password">Password</label>
+      </div>
+
+      <button type="submit" class="login-btn">Log In with Email</button>
+
+      <div class="links">
+        <a href="#" id="forgotLink">Forgot Password?</a>
+        <a href="signup.html">Sign up for Spotify</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal -->
+  <div id="forgotModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Forgot Password</h2>
+      <input type="email" id="resetEmail" placeholder="Enter your email address" />
+      <button onclick="resetPassword()">Send Reset Link</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const forgotLink = document.getElementById('forgotLink');
+    const forgotModal = document.getElementById('forgotModal');
+    const closeModal = document.getElementById('closeModal');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+      if (!email || !password) {
+        alert('❌ Please enter both email and password.');
+        return;
+      }
+
+      if (!emailPattern.test(email)) {
+        alert('❌ Invalid email format. Please use format like user@example.com');
+        return;
+      }
+
+      if (password.length < 6) {
+        alert('❌ Password must be at least 6 characters long.');
+        return;
+      }
+
+      alert('✅ Logging in with: ' + email);
+      localStorage.setItem('email', email);
+      window.location.href = 'index.html';
+    });
+
+    forgotLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      forgotModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', function () {
+      forgotModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+      if (e.target == forgotModal) {
+        forgotModal.style.display = 'none';
+      }
+    });
+
+    function resetPassword() {
+      const email = document.getElementById('resetEmail').value.trim();
+      if (!email) {
+        alert('❌ Please enter your email address.');
+        return;
+      }
+      alert(`✅ Password reset link sent to ${email}`);
+      document.getElementById('resetEmail').value = '';
+      forgotModal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
